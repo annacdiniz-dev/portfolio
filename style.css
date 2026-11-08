@@ -614,6 +614,8 @@ body {
     font-size: 12px;
 }
 
+.skill-short { display: none; }
+
 .skill-card h3 {
 
     margin: 22px 0 12px;
@@ -1085,23 +1087,24 @@ footer {
     .deco { min-width: 44px; height: 32px; padding: 0 10px; font-size: 12px; opacity: 0.6; }
     .deco svg { width: 20px; height: 20px; }
 
-    /* Tecnologias: quadradinhos, 3 por linha */
+    /* Tecnologias: quadradinhos, 3 por linha, com resumo dentro */
     .skills-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
 
     .skill-card {
         aspect-ratio: 1 / 1;
-        padding: 10px 6px;
+        padding: 12px 10px;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
         border-radius: 14px;
     }
 
     .skill-card .skill-number { font-size: 10px; }
-    .skill-card h3 { margin: 8px 0 0; font-size: 13px; line-height: 1.25; }
-    .skill-card p { display: none; }
+    .skill-card h3 { margin: 6px 0 6px; font-size: 13px; line-height: 1.2; }
+    .skill-card p:not(.skill-short) { display: none; }
+    .skill-card .skill-short { display: block; font-size: 10.5px; line-height: 1.4; color: var(--text-secondary); }
 }
 
 @media (prefers-reduced-motion: reduce) {
