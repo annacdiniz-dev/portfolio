@@ -1110,3 +1110,18 @@ footer {
 @media (prefers-reduced-motion: reduce) {
     .deco { animation: none; }
 }
+
+/* Experiência: versão compacta no celular */
+@media (max-width: 700px) {
+    .timeline { padding-left: 26px; }
+    .timeline::before { left: 4px; }
+    .timeline-dot { left: -26px; top: 4px; width: 11px; height: 11px; }
+    .timeline-item { padding-bottom: 28px; }
+    .timeline-date { font-size: 11px; }
+    .timeline-content h3 { margin-top: 6px; font-size: 17px; }
+    .timeline-content h4 { margin: 3px 0 10px; font-size: 13px; line-height: 1.35; }
+    .timeline-content p { font-size: 13px; line-height: 1.5; }
+    .timeline-content ul { gap: 5px; margin-top: 8px; font-size: 12.5px; line-height: 1.45; }
+    .timeline-content ul li { padding-left: 14px; text-indent: -14px; }
+    #experiencia .section-title { margin-bottom: 36px; }
+}
