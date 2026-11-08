@@ -144,17 +144,19 @@ body {
 
 .hero {
 
-    min-height: 100vh;
+    min-height: auto;
 
     display: grid;
 
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1fr;
 
     align-items: center;
 
-    gap: 70px;
+    gap: 50px;
 
-    padding-top: 100px;
+    padding-bottom: 0;
+
+    padding-top: 150px;
 }
 
 .status {
@@ -464,7 +466,7 @@ body {
 /* SECTION */
 
 .section {
-    padding: 120px 0;
+    padding: 80px 0;
 }
 
 .section-title {
@@ -944,7 +946,7 @@ footer {
     .hero {
         grid-template-columns: 1fr;
         padding-top: 150px;
-        padding-bottom: 100px;
+        padding-bottom: 20px;
     }
 
     .hero-card {
@@ -1026,4 +1028,89 @@ footer {
 .show {
     opacity: 1;
     transform: translateY(0);
+}
+.timeline-content ul {
+    list-style: none;
+    margin-top: 12px;
+    display: grid;
+    gap: 8px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.timeline-content ul li::before {
+    content: "▹ ";
+    color: var(--purple-light);
+}
+
+/* BALÕES FLUTUANTES */
+
+body { position: relative; }
+
+main, footer { position: relative; z-index: 1; }
+
+.decor {
+    --gutter: calc((100vw - min(1120px, 90vw)) / 2);
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 2;
+    perspective: 700px;
+}
+
+.deco {
+    position: absolute;
+    min-width: 62px;
+    height: 46px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--blue);
+    border: 1px solid rgba(0, 217, 255, 0.32);
+    background: linear-gradient(145deg, rgba(155, 92, 255, 0.22), rgba(0, 217, 255, 0.07));
+    box-shadow: 0 14px 36px rgba(155, 92, 255, 0.22), inset 0 0 16px rgba(0, 217, 255, 0.1);
+    opacity: 0.6;
+    animation: bob 7s ease-in-out infinite, sway 12s ease-in-out infinite;
+}
+
+.deco:nth-child(even) { animation-duration: 8.5s, 14s; animation-delay: -3s, -5s; color: var(--purple-light); }
+.deco:nth-child(3n)   { animation-delay: -5s, -2s; }
+
+/* nas laterais, dentro da folga ao lado do conteúdo */
+.deco.l { left: calc(var(--gutter) / 2); margin-left: -31px; }
+.deco.r { right: calc(var(--gutter) / 2); margin-right: -31px; }
+
+@keyframes bob {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -12px; }
+}
+
+/* movimento leve, sem deformar: só uma inclinação suave */
+@keyframes sway {
+    0%, 100% { transform: perspective(900px) rotateY(-9deg) rotateX(3deg) rotateZ(-2deg); }
+    50%      { transform: perspective(900px) rotateY(9deg) rotateX(-3deg) rotateZ(2deg); }
+}
+
+/* telas estreitas: balões pequenos espiando pela borda */
+@media (max-width: 1280px) {
+    .deco { min-width: 50px; height: 36px; padding: 0 10px; font-size: 13px; opacity: 0.45; }
+    .deco.l { left: -12px; margin-left: 0; }
+    .deco.r { right: -12px; margin-right: 0; }
+}
+
+@media (max-width: 700px) {
+    .deco { min-width: 42px; height: 30px; padding: 0 8px; font-size: 11px; opacity: 0.4; }
+    .deco.l { left: -10px; }
+    .deco.r { right: -10px; }
+    .deco svg { width: 18px; height: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .deco { animation: none; }
 }
