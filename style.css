@@ -1043,26 +1043,15 @@ footer {
     color: var(--purple-light);
 }
 
-/* BALÕES FLUTUANTES */
+/* BALÕES FLUTUANTES — ficam nos espaços entre as seções, nunca sobre o texto */
 
-body { position: relative; }
-
-main, footer { position: relative; z-index: 1; }
-
-.decor {
-    --gutter: calc((100vw - min(1120px, 90vw)) / 2);
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 2;
-    perspective: 700px;
-}
+.section { position: relative; }
 
 .deco {
     position: absolute;
-    min-width: 62px;
-    height: 46px;
+    z-index: 1;
+    min-width: 58px;
+    height: 40px;
     padding: 0 14px;
     display: flex;
     align-items: center;
@@ -1075,40 +1064,44 @@ main, footer { position: relative; z-index: 1; }
     border: 1px solid rgba(0, 217, 255, 0.32);
     background: linear-gradient(145deg, rgba(155, 92, 255, 0.22), rgba(0, 217, 255, 0.07));
     box-shadow: 0 14px 36px rgba(155, 92, 255, 0.22), inset 0 0 16px rgba(0, 217, 255, 0.1);
-    opacity: 0.6;
+    opacity: 0.7;
+    pointer-events: none;
     animation: bob 7s ease-in-out infinite, sway 12s ease-in-out infinite;
 }
 
-.deco:nth-child(even) { animation-duration: 8.5s, 14s; animation-delay: -3s, -5s; color: var(--purple-light); }
-.deco:nth-child(3n)   { animation-delay: -5s, -2s; }
-
-/* nas laterais, dentro da folga ao lado do conteúdo */
-.deco.l { left: calc(var(--gutter) / 2); margin-left: -31px; }
-.deco.r { right: calc(var(--gutter) / 2); margin-right: -31px; }
+.deco:nth-of-type(even) { color: var(--purple-light); animation-duration: 8.5s, 14s; animation-delay: -3s, -5s; }
 
 @keyframes bob {
     0%, 100% { translate: 0 0; }
-    50%      { translate: 0 -12px; }
+    50%      { translate: 0 -10px; }
 }
 
-/* movimento leve, sem deformar: só uma inclinação suave */
 @keyframes sway {
     0%, 100% { transform: perspective(900px) rotateY(-9deg) rotateX(3deg) rotateZ(-2deg); }
     50%      { transform: perspective(900px) rotateY(9deg) rotateX(-3deg) rotateZ(2deg); }
 }
 
-/* telas estreitas: balões pequenos espiando pela borda */
-@media (max-width: 1280px) {
-    .deco { min-width: 50px; height: 36px; padding: 0 10px; font-size: 13px; opacity: 0.45; }
-    .deco.l { left: -12px; margin-left: 0; }
-    .deco.r { right: -12px; margin-right: 0; }
-}
-
 @media (max-width: 700px) {
-    .deco { min-width: 42px; height: 30px; padding: 0 8px; font-size: 11px; opacity: 0.4; }
-    .deco.l { left: -10px; }
-    .deco.r { right: -10px; }
-    .deco svg { width: 18px; height: 18px; }
+    .deco { min-width: 44px; height: 32px; padding: 0 10px; font-size: 12px; opacity: 0.6; }
+    .deco svg { width: 20px; height: 20px; }
+
+    /* Tecnologias: quadradinhos, 3 por linha */
+    .skills-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+    .skill-card {
+        aspect-ratio: 1 / 1;
+        padding: 10px 6px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-radius: 14px;
+    }
+
+    .skill-card .skill-number { font-size: 10px; }
+    .skill-card h3 { margin: 8px 0 0; font-size: 13px; line-height: 1.25; }
+    .skill-card p { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
