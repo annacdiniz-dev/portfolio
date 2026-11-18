@@ -573,7 +573,7 @@ body {
 
 /* SKILLS */
 
-.skills-grid {
+.skills-grid, .tech-grid {
 
     display: grid;
 
@@ -614,7 +614,6 @@ body {
     font-size: 12px;
 }
 
-.skill-short { display: none; }
 
 .skill-card h3 {
 
@@ -638,7 +637,7 @@ body {
 
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 22px;
 }
@@ -995,7 +994,7 @@ footer {
         display: flex;
     }
 
-    .skills-grid,
+    .skills-grid, .tech-grid,
     .projects-grid {
         grid-template-columns: 1fr;
     }
@@ -1087,24 +1086,6 @@ footer {
     .deco { min-width: 44px; height: 32px; padding: 0 10px; font-size: 12px; opacity: 0.6; }
     .deco svg { width: 20px; height: 20px; }
 
-    /* Tecnologias: quadradinhos, 3 por linha, com resumo dentro */
-    .skills-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-
-    .skill-card {
-        aspect-ratio: 1 / 1;
-        padding: 12px 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        text-align: left;
-        border-radius: 14px;
-    }
-
-    .skill-card .skill-number { font-size: 10px; }
-    .skill-card h3 { margin: 6px 0 6px; font-size: 13px; line-height: 1.2; }
-    .skill-card p:not(.skill-short) { display: none; }
-    .skill-card .skill-short { display: block; font-size: 10.5px; line-height: 1.4; color: var(--text-secondary); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1124,4 +1105,83 @@ footer {
     .timeline-content ul { gap: 5px; margin-top: 8px; font-size: 12.5px; line-height: 1.45; }
     .timeline-content ul li { padding-left: 14px; text-indent: -14px; }
     #experiencia .section-title { margin-bottom: 36px; }
+}
+
+/* Projeto com subtítulo e vários links */
+.project-card .project-subtitle {
+    flex: none;
+    margin: -8px 0 16px;
+    line-height: 1.4;
+    color: var(--blue);
+    font-family: monospace;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.project-card .project-links a {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 217, 255, 0.25);
+    background: rgba(0, 217, 255, 0.04);
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.25s;
+}
+
+.project-card .project-links a:hover,
+.project-card .project-links a:focus-visible {
+    background: rgba(0, 217, 255, 0.12);
+    border-color: rgba(0, 217, 255, 0.6);
+}
+
+@media (max-width: 700px) {
+    .project-card { min-height: 0; padding: 24px 22px; }
+    .project-card h3 { margin-top: 24px; }
+    .project-links a { flex: 1 1 auto; justify-content: center; }
+}
+
+/* Selo do hero: cabe em uma linha no celular */
+@media (max-width: 700px) {
+    .status { font-size: 12px; gap: 8px; padding: 8px 12px; letter-spacing: -0.1px; }
+}
+
+/* Tecnologias agrupadas */
+.tech-group h3 { margin: 18px 0 8px; font-size: 20px; }
+.tech-group p { margin-bottom: 18px; }
+
+.tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech-chips span {
+    padding: 7px 12px;
+    border-radius: 8px;
+    background: rgba(155, 92, 255, 0.08);
+    border: 1px solid rgba(155, 92, 255, 0.2);
+    color: var(--purple-light);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+@media (max-width: 700px) {
+    .tech-grid { grid-template-columns: 1fr; gap: 14px; }
+    .tech-group { padding: 22px 20px; }
+    .tech-group h3 { margin: 12px 0 6px; font-size: 18px; }
+    .tech-group p { margin-bottom: 14px; font-size: 13px; }
+}
+
+@media (max-width: 900px) {
+    .tech-grid { grid-template-columns: 1fr; }
 }
